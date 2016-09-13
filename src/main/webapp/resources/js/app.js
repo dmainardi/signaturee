@@ -28,8 +28,9 @@ clearButton.addEventListener("click", function (event) {
 
 saveButton.addEventListener("click", function (event) {
     if (signaturePad.isEmpty()) {
+        document.getElementById("signatureForm:imageDataUri").value = "";
         alert("Please provide signature first.");
     } else {
-        window.open(signaturePad.toDataURL());
+        document.getElementById("signatureForm:imageDataUri").value = signaturePad.toDataURL();
     }
 });

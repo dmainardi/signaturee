@@ -5,6 +5,12 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:bnu="http://bootsfaces.net/ui">
+    <f:metadata>
+        <f:viewParam name="id"
+                     value="#{signaturePresenter.id}"
+                     converter="javax.faces.Long"/>
+        <f:viewAction action="#{signaturePresenter.detailSignature()}"/>
+    </f:metadata>
     <ui:composition template="/template/main.xhtml">
         <ui:define name="contentTitle">Signature</ui:define>
         <ui:define name="contentSubtitle">Create or modify the signature</ui:define>
@@ -27,9 +33,28 @@
                     <h:outputLabel value="Sign above"/>
                 </bnu:column>
                 <bnu:column colSm="4" colMd="2">
-                    <button type="button" class="button save" data-action="save">Save</button>
+                    <button type="button" class="button save" data-action="save">Process</button>
                 </bnu:column>
             </bnu:row>
+            <h:form id="signatureForm">
+                <h:inputText id="imageDataUri" value="#{signaturePresenter.imageDataUri}" />
+                <bnu:panelGrid colSpans="3,5,4">
+                    <h:outputLabel for="name" value="Name"/>
+                    <bnu:inputText id="name" value="#{signaturePresenter.signature.name}"/>
+                    <bnu:message/>
+                </bnu:panelGrid>
+                <bnu:row>
+                    <bnu:column offsetSm="1" colSm="4" offsetMd="2" colMd="3">
+                        <bnu:button value="Cancel" outcome="/signatures" styleClass="btn-block"/>
+                    </bnu:column>
+                    <bnu:column offsetSm="2" colSm="4" offsetMd="2" colMd="3">
+                        <h:commandButton
+                            value="Save"
+                            action="#{signaturePresenter.saveSignature()}"
+                            styleClass="btn btn-block btn-primary"/>
+                    </bnu:column>
+                </bnu:row>
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>
