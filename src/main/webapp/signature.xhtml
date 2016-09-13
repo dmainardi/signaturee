@@ -3,27 +3,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:bnu="http://bootsfaces.net/ui">
     <ui:composition template="/template/main.xhtml">
         <ui:define name="contentTitle">Signature</ui:define>
         <ui:define name="contentSubtitle">Create or modify the signature</ui:define>
         <ui:define name="content">
             <h:outputScript library="js" name="signature_pad.min.js" target="body" />
             <h:outputScript library="js" name="app.js" target="body" />
+            <h:outputStylesheet library="css" name="signature-pad.css" />
             <f:facet name="first">
                 <meta name="apple-mobile-web-app-capable" content="yes"/>
                 <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
             </f:facet>
-            <div id="signature-pad" class="m-signature-pad">
-                <div class="m-signature-pad--body">
-                    <canvas></canvas>
-                </div>
-                <div class="m-signature-pad--footer">
-                    <div class="description">Sign above</div>
+            <bnu:row id="signature-pad">
+                <bnu:column>
+                    <canvas id="canvas" width="300" height="300"></canvas>
+                </bnu:column>
+                <bnu:column colSm="4" colMd="2">
                     <button type="button" class="button clear" data-action="clear">Clear</button>
+                </bnu:column>
+                <bnu:column colSm="4" colMd="8">
+                    <h:outputLabel value="Sign above"/>
+                </bnu:column>
+                <bnu:column colSm="4" colMd="2">
                     <button type="button" class="button save" data-action="save">Save</button>
-                </div>
-            </div>
+                </bnu:column>
+            </bnu:row>
         </ui:define>
     </ui:composition>
 </html>
